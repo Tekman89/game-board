@@ -1,11 +1,12 @@
 package org.academiadecodigo.game.mover.chess;
 
-import org.academiadecodigo.game.Piece;
-import org.academiadecodigo.game.Position;
+import org.academiadecodigo.game.piece.Piece;
+import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.utils.Move;
 
 /**
+ * Class responsible for moving pieces in the ChessBoard
  * Created by tekman on 24/12/2016.
  */
 public class ChessMover implements Mover {
@@ -40,10 +41,7 @@ public class ChessMover implements Mover {
 
         piece.move(position);
         position.setPiece(piece);
-
-
     }
-
 
     /**
      * Move called when there is a piece on the target position,

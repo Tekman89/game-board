@@ -1,6 +1,7 @@
 package org.academiadecodigo;
 
 import org.academiadecodigo.client.Player;
+import org.academiadecodigo.client.chess.ChessPlayer;
 import org.academiadecodigo.game.Game;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
@@ -14,8 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Player p1 = new Player();
-        Player p2 = new Player();
+        Player p1 = new ChessPlayer();
+        Player p2 = new ChessPlayer();
 
 
         Game game = new Game.GameBuilderImpl()

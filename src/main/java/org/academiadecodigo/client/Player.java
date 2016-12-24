@@ -7,7 +7,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 /**
  * Created by tekman on 24/12/2016.
  */
-public class Player {
+public abstract class Player {
 
     private Game game;
 

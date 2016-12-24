@@ -1,20 +1,38 @@
 package org.academiadecodigo.game.utils;
 
 
-import org.academiadecodigo.game.Piece;
-import org.academiadecodigo.game.Position;
+import org.academiadecodigo.game.piece.Piece;
+import org.academiadecodigo.game.position.Position;
 
 /**
  * Created by tekman on 24/12/2016.
  */
-public interface Move {
+public abstract class Move {
 
-    void setPosition(Position position);
 
-    void setPiece(Piece piece);
+    private Position pos;
 
-    Position getPosition();
+    private Piece piece;
 
-    Piece getPiece();
+    public void setPosition(Position position) {
+        this.pos = position;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
+    public Position getPosition() {
+        return pos;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public void reset() {
+        piece = null;
+        pos = null;
+    }
 
 }
