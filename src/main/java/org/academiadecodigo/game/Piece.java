@@ -9,6 +9,7 @@ public abstract class Piece {
 
     private Position position;
     private PieceColorType color;
+    private boolean eaten;
 
     public Position getPos() {
         return position;
@@ -17,4 +18,12 @@ public abstract class Piece {
     public void setPos(Position pos) {
         this.position = pos;
     }
+
+    public void setEaten(boolean eaten) {
+        this.eaten = eaten;
+    }
+
+
+    //needs to be overwritten
+    public abstract void move(Position position);
 }

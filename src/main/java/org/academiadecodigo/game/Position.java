@@ -12,4 +12,8 @@ public class Position {
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
+
+    public Piece getPiece() {
+        return piece;
+    }
 }
