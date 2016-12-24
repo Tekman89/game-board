@@ -16,4 +16,8 @@ public class Position {
     public Piece getPiece() {
         return piece;
     }
+
+    public void removePiece() {
+        piece = null;
+    }
 }
