@@ -9,8 +9,12 @@ import org.academiadecodigo.game.utils.chess.PieceColorType;
 public abstract class Piece {
 
     private Position position;
-    private PieceColorType color;
     private boolean eaten;
+
+    public Piece(Position pos) {
+        this.position = pos;
+        eaten = false;
+    }
 
     public Position getPos() {
         return position;
@@ -22,6 +26,10 @@ public abstract class Piece {
 
     public void setEaten(boolean eaten) {
         this.eaten = eaten;
+    }
+
+    public boolean getEaten() {
+        return eaten;
     }
 
 

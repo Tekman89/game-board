@@ -1,9 +1,13 @@
 package org.academiadecodigo.game.mover.chess;
 
+import org.academiadecodigo.client.Player;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.utils.Move;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Class responsible for moving pieces in the ChessBoard
@@ -11,12 +15,17 @@ import org.academiadecodigo.game.utils.Move;
  */
 public class ChessMover implements Mover {
 
+    private Map<Player, List<Move>> playerMoves;
+
     /**
      * Method to commit Moves made by the player
      * will call different methods depending on whether there is a piece on the target position
      * @param move Interface that abstracts the position and the piece to be moved
+     * @return the previous position occupied by the piece
      */
-    public void commitMove(Move move) {
+    public Position commitMove(Move move) {
+
+        Position previousPos = move.getPiece().getPos();
 
         if (move.getPosition().getPiece() != null) {
             eatPiece(move);
@@ -24,6 +33,7 @@ public class ChessMover implements Mover {
             moveNormal(move);
         }
 
+        return previousPos;
     }
 
     /**
@@ -60,4 +70,22 @@ public class ChessMover implements Mover {
         moveNormal(move);
     }
 
+
+    /**
+     * See @mover
+     * @param player player to add into
+     * @param move the move made
+     * @param previousPos the previous piece position
+     */
+    public void recalculatePlayerMoves(Player player, Move move, Position previousPos) {
+
+    }
+
+    /**
+     * the same playerMoves as the one in the Game class and the Validator class
+     * @param playerMoves moves that the players can make
+     */
+    public void setPlayerMoves(Map<Player, List<Move>> playerMoves) {
+        this.playerMoves = playerMoves;
+    }
 }

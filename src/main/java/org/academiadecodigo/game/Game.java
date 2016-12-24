@@ -2,19 +2,22 @@ package org.academiadecodigo.game;
 
 import org.academiadecodigo.client.Player;
 import org.academiadecodigo.game.board.GameBoard;
+import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.GameBuilder;
 import org.academiadecodigo.game.utils.Move;
 import org.academiadecodigo.game.validator.MoveValidator;
 import org.academiadecodigo.game.mover.Mover;
 import sun.plugin.dom.exception.InvalidStateException;
 
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Game container, Built to be modular and only built through his builder, supports only 2 player board games
  * Contains the game flow.
- *
+ * <p>
  * Created by tekman on 24/12/2016.
  */
 public class Game {
@@ -39,6 +42,8 @@ public class Game {
      */
     private Mover mover;
 
+    private Map<Player, List<Move>> playerMoves;
+
     private Game() {
         //empty constructor
     }
@@ -50,6 +55,7 @@ public class Game {
         //create MoveValidator
         //create each PlayersSetPieces
 
+        mover.setPlayerMoves(playerMoves);
 
         //add all dependencies to the players (Game)
         for (Player p : players) {
@@ -74,6 +80,8 @@ public class Game {
      */
     public void start() {
         //main game loop
+
+
         while (!isGameOver()) {
 
             for (Player p : players) {
@@ -121,7 +129,9 @@ public class Game {
 
         } while (!validator.isMoveValid(move));
 
-        mover.commitMove(move);
+        Position previousPos = mover.commitMove(move);
+
+        mover.recalculatePlayerMoves(player, move, previousPos);
 
     }
 
@@ -136,6 +146,7 @@ public class Game {
         public GameBuilderImpl() {
             game = new Game();
             game.players = new LinkedList<Player>();
+            game.playerMoves = new LinkedHashMap<Player, List<Move>>();
         }
 
         public GameBuilder addPlayer(Player player) {
@@ -217,6 +228,17 @@ public class Game {
      */
     private void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
+    }
+
+
+    /**
+     * Method to add all player moves to a Map of Players, List<Moves>
+     *
+     * @param player to which the moves belongs to
+     * @param move   to add to the list
+     */
+    private void addPlayerMove(Player player, Move move) {
+        playerMoves.get(player).add(move);
     }
 
 
