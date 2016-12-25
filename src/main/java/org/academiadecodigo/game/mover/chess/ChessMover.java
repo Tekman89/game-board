@@ -1,13 +1,13 @@
 package org.academiadecodigo.game.mover.chess;
 
 import org.academiadecodigo.client.Player;
+import org.academiadecodigo.game.Game;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.utils.Move;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Class responsible for moving pieces in the ChessBoard
@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class ChessMover implements Mover {
 
-    private Map<Player, List<Move>> playerMoves;
+    private Game game;
 
     /**
      * Method to commit Moves made by the player
@@ -79,13 +79,10 @@ public class ChessMover implements Mover {
      */
     public void recalculatePlayerMoves(Player player, Move move, Position previousPos) {
 
+        List<Move> previousMoves = game.getPlayerMoves(player);
     }
 
-    /**
-     * the same playerMoves as the one in the Game class and the Validator class
-     * @param playerMoves moves that the players can make
-     */
-    public void setPlayerMoves(Map<Player, List<Move>> playerMoves) {
-        this.playerMoves = playerMoves;
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

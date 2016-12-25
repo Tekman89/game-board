@@ -27,4 +27,12 @@ public class Position {
     public void removePiece() {
         piece = null;
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
 }

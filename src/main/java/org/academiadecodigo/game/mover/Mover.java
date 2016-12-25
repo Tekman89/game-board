@@ -1,6 +1,7 @@
 package org.academiadecodigo.game.mover;
 
 import org.academiadecodigo.client.Player;
+import org.academiadecodigo.game.Game;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.Move;
 
@@ -17,5 +18,5 @@ public interface Mover {
 
     void recalculatePlayerMoves(Player player, Move move, Position previousPos);
 
-    void setPlayerMoves(Map<Player, List<Move>> playerMoves);
+    void setGame(Game game);
 }

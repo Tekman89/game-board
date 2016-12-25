@@ -42,6 +42,9 @@ public class Game {
      */
     private Mover mover;
 
+    /**
+     * Map containing all moves the players can make
+     */
     private Map<Player, List<Move>> playerMoves;
 
     private Game() {
@@ -55,12 +58,16 @@ public class Game {
         //create MoveValidator
         //create each PlayersSetPieces
 
-        mover.setPlayerMoves(playerMoves);
+        mover.setGame(this);
+        validator.setGame(this);
 
         //add all dependencies to the players (Game)
         for (Player p : players) {
             p.setGame(this);
+            validator.beginGame(gameBoard, p);
         }
+
+
 
     }
 
@@ -127,10 +134,11 @@ public class Game {
 
             move = player.playRound();
 
-        } while (!validator.isMoveValid(move));
+        } while (!validator.isMoveValid(move, player));
 
         Position previousPos = mover.commitMove(move);
 
+        // TODO: 25/12/2016 See if it's the mover that makes sense to do this and implement it.
         mover.recalculatePlayerMoves(player, move, previousPos);
 
     }
@@ -237,8 +245,12 @@ public class Game {
      * @param player to which the moves belongs to
      * @param move   to add to the list
      */
-    private void addPlayerMove(Player player, Move move) {
+    public void addPlayerMove(Player player, Move move) {
         playerMoves.get(player).add(move);
+    }
+
+    public List<Move> getPlayerMoves (Player player) {
+        return playerMoves.get(player);
     }
 
 

@@ -1,4 +1,4 @@
-package org.academiadecodigo.game.utils.chess;
+package org.academiadecodigo.game.utils;
 
 /**
  * Created by tekman on 24/12/2016.

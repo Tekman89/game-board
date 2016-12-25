@@ -14,6 +14,11 @@ public abstract class Move {
 
     private Piece piece;
 
+    public Move(Piece p, Position pos) {
+        this.pos = pos;
+        this.piece = p;
+    }
+
     public void setPosition(Position position) {
         this.pos = position;
     }
