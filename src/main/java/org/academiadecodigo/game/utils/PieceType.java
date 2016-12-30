@@ -13,5 +13,4 @@ public interface PieceType {
     List<Directions> getDirections();
 
 
-
 }

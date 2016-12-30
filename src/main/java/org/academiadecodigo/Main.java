@@ -1,6 +1,6 @@
 package org.academiadecodigo;
 
-import org.academiadecodigo.client.chess.ChessPlayer;
+import org.academiadecodigo.game.player.chess.ChessPlayer;
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
@@ -11,6 +11,7 @@ import org.academiadecodigo.game.validator.chess.ChessValidator;
  */
 public class Main {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
 
 

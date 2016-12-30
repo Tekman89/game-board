@@ -1,6 +1,6 @@
 package org.academiadecodigo.game;
 
-import org.academiadecodigo.client.Player;
+import org.academiadecodigo.game.player.Player;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.validator.MoveValidator;

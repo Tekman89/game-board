@@ -1,6 +1,6 @@
 package org.academiadecodigo.game;
 
-import org.academiadecodigo.client.chess.ChessPlayer;
+import org.academiadecodigo.game.player.chess.ChessPlayer;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
@@ -68,7 +68,6 @@ public class ChessGame extends Game {
             p.setChessGame(this);
             validator.beginGame(gameBoard, p);
         }
-
 
 
     }
@@ -250,7 +249,7 @@ public class ChessGame extends Game {
         playerMoves.get(player).add(move);
     }
 
-    public List<Move> getPlayerMoves (ChessPlayer player) {
+    public List<Move> getPlayerMoves(ChessPlayer player) {
         return playerMoves.get(player);
     }
 

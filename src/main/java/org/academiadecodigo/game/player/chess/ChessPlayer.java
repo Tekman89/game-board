@@ -1,6 +1,6 @@
-package org.academiadecodigo.client.chess;
+package org.academiadecodigo.game.player.chess;
 
-import org.academiadecodigo.client.Player;
+import org.academiadecodigo.game.player.Player;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.piece.chess.ChessPiece;
 import org.academiadecodigo.game.utils.chess.ChessPieceType;
@@ -11,13 +11,12 @@ import org.academiadecodigo.game.utils.chess.ChessPieceType;
 public class ChessPlayer extends Player<ChessPiece> {
 
 
-
     public ChessPiece getKing() {
 
         ChessPiece piece = null;
 
-        for (Piece c: getPieces()) {
-            if(c.getType().equals(ChessPieceType.KING)) {
+        for (Piece c : getPieces()) {
+            if (c.getType().equals(ChessPieceType.KING)) {
                 piece = (ChessPiece) c;
             }
         }

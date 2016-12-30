@@ -1,7 +1,7 @@
 package org.academiadecodigo.game.validator.chess;
 
-import org.academiadecodigo.client.Player;
-import org.academiadecodigo.client.chess.ChessPlayer;
+import org.academiadecodigo.game.player.Player;
+import org.academiadecodigo.game.player.chess.ChessPlayer;
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.piece.Piece;

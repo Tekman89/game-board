@@ -1,4 +1,4 @@
-package org.academiadecodigo.client;
+package org.academiadecodigo.game.player;
 
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.piece.Piece;
@@ -15,7 +15,6 @@ public abstract class Player<T extends Piece> {
     private ChessGame chessGame;
 
     private List<T> pieces;
-
 
     public Player() {
 

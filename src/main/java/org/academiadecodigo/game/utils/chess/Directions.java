@@ -20,7 +20,7 @@ public enum Directions {
     public final int[] moves;
 
     Directions(int x, int y) {
-        moves = new int[] {x, y};
+        moves = new int[]{x, y};
     }
 
     public static List<Directions> getList() {
