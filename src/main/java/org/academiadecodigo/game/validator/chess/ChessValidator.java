@@ -42,6 +42,13 @@ public class ChessValidator implements MoveValidator {
         return toReturn;
     }
 
+
+    // TODO: 30/12/2016
+    private boolean checkIfMoveCompromises(Move move, Player player) {
+        throw new NotImplementedException();
+    }
+
+    // TODO: 30/12/2016
     private boolean checkIfMoveProtects(Move move, Player player) {
         List<Piece> pieceList = player.getKing().getThreats();
         Position kingPos = player.getKing().getPos();
@@ -57,6 +64,8 @@ public class ChessValidator implements MoveValidator {
             1 - Check if the move will block all the routes to the check
             2 -
          */
+
+        throw new NotImplementedException();
 
     }
 
