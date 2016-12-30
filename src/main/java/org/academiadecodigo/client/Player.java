@@ -19,6 +19,7 @@ public abstract class Player {
 
     private King king;
 
+
     public Player() {
 
     }
@@ -38,5 +39,10 @@ public abstract class Player {
 
     public List<Piece> getPieces() {
         return pieces;
+    }
+
+
+    public King getKing() {
+        return king;
     }
 }

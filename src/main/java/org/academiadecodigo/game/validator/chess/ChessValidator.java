@@ -4,6 +4,7 @@ import org.academiadecodigo.client.Player;
 import org.academiadecodigo.game.Game;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.piece.Piece;
+import org.academiadecodigo.game.piece.chess.King;
 import org.academiadecodigo.game.piece.chess.Knight;
 import org.academiadecodigo.game.piece.chess.Pawn;
 import org.academiadecodigo.game.position.Position;
@@ -11,6 +12,9 @@ import org.academiadecodigo.game.utils.Move;
 import org.academiadecodigo.game.utils.chess.ChessMove;
 import org.academiadecodigo.game.utils.chess.Directions;
 import org.academiadecodigo.game.validator.MoveValidator;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.List;
 
 
 /**
@@ -18,22 +22,50 @@ import org.academiadecodigo.game.validator.MoveValidator;
  */
 public class ChessValidator implements MoveValidator {
 
-
     private Game game;
 
     public boolean isMoveValid(Move move, Player player) {
-        return game.getPlayerMoves(player).contains(move);
+        return game.getPlayerMoves(player).contains(move) && checkIfKingIsNotEndangered(move, player);
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    private boolean checkIfKingIsNotEndangered(Move move, Player player) {
+
+        King playerKing = player.getKing();
+        boolean toReturn = false;
+
+        if (playerKing.isInDanger()) {
+            toReturn = checkIfMoveProtects(move, player);
+        } else {
+            toReturn = checkIfMoveCompromises(move, player);
+        }
+
+        return toReturn;
     }
+
+    private boolean checkIfMoveProtects(Move move, Player player) {
+        List<Piece> pieceList = player.getKing().getThreats();
+        Position kingPos = player.getKing().getPos();
+
+
+        for (Piece p : pieceList) {
+
+        }
+
+        /*
+            Logic of this method:
+
+            1 - Check if the move will block all the routes to the check
+            2 -
+         */
+
+    }
+
 
     public void beginGame(GameBoard board, Player player) {
 
         for (Piece p : player.getPieces()) {
 
-            if (p instanceof Pawn || p instanceof Knight) {
+            if (p.getSubclass().equals(Pawn.class) || p.getSubclass().equals(Knight.class)) {
                 evaluateSpecialPiece(p, board, player);
             }
 
@@ -45,7 +77,7 @@ public class ChessValidator implements MoveValidator {
     }
 
     private void evaluateSpecialPiece(Piece p, GameBoard board, Player player) {
-        if (p instanceof Pawn) {
+        if (p.getSubclass().equals(Pawn.class)) {
             evaluatePawn((Pawn) p, board, player);
         } else {
             evaluateKnight((Knight) p, board, player);
@@ -79,6 +111,8 @@ public class ChessValidator implements MoveValidator {
                             temp.getPiece() == null)) {
 
                 game.addPlayerMove(player, new ChessMove(knight, temp));
+
+
             }
 
 
@@ -123,7 +157,7 @@ public class ChessValidator implements MoveValidator {
         int col = p.getCol();
         int row = p.getRow();
 
-        for (int i = 0; i < p.getMaxDistance(); i++) {
+        for (int i = 1; i <= p.getMaxDistance(); i++) {
             Position temp = board.getPos(col + d.moves[0] * i, row + d.moves[-1] * i);
 
             if (temp == null) {
@@ -133,8 +167,20 @@ public class ChessValidator implements MoveValidator {
 
             if (temp.getPiece() == null || (temp.getPiece().getColor() != p.getColor())) {
                 game.addPlayerMove(player, new ChessMove(p, temp));
+                break;
             }
 
         }
+    }
+
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+
+    // TODO: 30/12/2016 finish this method
+    public void recalculatePlayerMoves(Player player, Move move, Position previousPos) {
+        throw new NotImplementedException();
     }
 }

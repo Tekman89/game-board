@@ -10,10 +10,10 @@ import org.academiadecodigo.game.utils.PieceColorType;
 public class Knight extends ChessPiece {
 
     public Knight(Position pos, PieceColorType color) {
-        super(pos, color, 0);
+        super(pos, color, 0, Knight.class);
     }
 
     public Knight(int col, int row, PieceColorType color) {
-        super(new Position(col, row), color, 0);
+        super(new Position(col, row), color, 0, Knight.class);
     }
 }

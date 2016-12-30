@@ -17,7 +17,7 @@ public class Rook extends ChessPiece {
 
 
     public Rook(Position pos, PieceColorType color) {
-        super(pos, color, 8);
+        super(pos, color, 8, Rook.class);
         List<Directions> directions = new LinkedList<Directions>();
         directions.add(Directions.DOWN);
         directions.add(Directions.LEFT);
@@ -29,7 +29,7 @@ public class Rook extends ChessPiece {
 
 
     public Rook(int col, int row, PieceColorType color) {
-        super(new Position(col, row), color, 8);
+        super(new Position(col, row), color, 8, Rook.class);
     }
 
 

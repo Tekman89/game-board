@@ -10,10 +10,10 @@ import org.academiadecodigo.game.utils.PieceColorType;
 public class Pawn extends ChessPiece {
 
     public Pawn(Position pos, PieceColorType color) {
-        super(pos, color, 2);
+        super(pos, color, 2, Pawn.class);
     }
 
     public Pawn(int col, int row, PieceColorType color) {
-        super(new Position(col, row), color, 2);
+        super(new Position(col, row), color, 2, Pawn.class);
     }
 }

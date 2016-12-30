@@ -88,7 +88,6 @@ public class Game {
     public void start() {
         //main game loop
 
-
         while (!isGameOver()) {
 
             for (Player p : players) {
@@ -139,7 +138,7 @@ public class Game {
         Position previousPos = mover.commitMove(move);
 
         // TODO: 25/12/2016 See if it's the mover that makes sense to do this and implement it.
-        mover.recalculatePlayerMoves(player, move, previousPos);
+        validator.recalculatePlayerMoves(player, move, previousPos);
 
     }
 

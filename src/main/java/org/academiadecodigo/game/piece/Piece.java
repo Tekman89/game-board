@@ -1,10 +1,10 @@
 package org.academiadecodigo.game.piece;
 
 import org.academiadecodigo.game.position.Position;
-import org.academiadecodigo.game.utils.Move;
 import org.academiadecodigo.game.utils.PieceColorType;
 import org.academiadecodigo.game.utils.chess.Directions;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,12 +18,18 @@ public abstract class Piece {
     private int maxDistance;
     private PieceColorType color;
 
+    private Class subclass;
 
-    public Piece(Position pos, int maxDistance, PieceColorType color) {
+    private List<Piece> whoThreatens;
+
+
+    public Piece(Position pos, int maxDistance, PieceColorType color, Class subclass) {
         this.position = pos;
         this.maxDistance = maxDistance;
         this.color = color;
         eaten = false;
+        this.subclass = subclass;
+        whoThreatens = new LinkedList<Piece>();
     }
 
     public Position getPos() {
@@ -46,7 +52,7 @@ public abstract class Piece {
     //needs to be overwritten
     public abstract void move(Position position);
 
-    public void setDirections(List<Directions> directions) {
+    protected void setDirections(List<Directions> directions) {
         this.directions = directions;
     }
 
@@ -70,4 +76,16 @@ public abstract class Piece {
         return color;
     }
 
+
+    public Class getSubclass() {
+        return subclass;
+    }
+
+    public void addThreat(Piece piece) {
+        whoThreatens.add(piece);
+    }
+
+    public List<Piece> getThreats() {
+        return whoThreatens;
+    }
 }

@@ -1,5 +1,8 @@
 package org.academiadecodigo.game.utils.chess;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by tekman on 24/12/2016.
  */
@@ -20,4 +23,11 @@ public enum Directions {
         moves = new int[] {x, y};
     }
 
+    public static List<Directions> getList() {
+        List<Directions> directionsList = new LinkedList<Directions>();
+        for (int i = 0; i < Directions.values().length; i++) {
+            directionsList.add(Directions.values()[i]);
+        }
+        return directionsList;
+    }
 }
