@@ -1,24 +1,27 @@
 package org.academiadecodigo.game.utils.chess;
 
+import org.academiadecodigo.game.utils.PieceType;
+
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by tekman on 30/12/2016.
  */
-public enum ChessPieceType {
+public enum ChessPieceType implements PieceType {
 
-    ROOK,
-    KNIGHT,
-    BISHOP,
-    KING,
-    PAWN,
-    QUEEN;
+    ROOK(8),
+    KNIGHT(0),
+    BISHOP(8),
+    KING(1),
+    PAWN(0),
+    QUEEN(8);
 
-
+    public final int range;
     private List<Directions> directions;
 
-    ChessPieceType() {
+    ChessPieceType(int range) {
+        this.range = range;
         directions = new LinkedList<Directions>();
         addDirections();
     }
@@ -47,5 +50,10 @@ public enum ChessPieceType {
                 System.out.println("should never enter here");
                 break;
         }
+    }
+
+
+    public List<Directions> getDirections() {
+        return directions;
     }
 }

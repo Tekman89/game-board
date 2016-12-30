@@ -1,6 +1,5 @@
 package org.academiadecodigo.game.piece.chess;
 
-import org.academiadecodigo.game.piece.ChessPiece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.PieceColorType;
 import org.academiadecodigo.game.utils.chess.Directions;
