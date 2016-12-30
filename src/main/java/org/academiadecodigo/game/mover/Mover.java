@@ -2,6 +2,7 @@ package org.academiadecodigo.game.mover;
 
 import org.academiadecodigo.client.Player;
 import org.academiadecodigo.game.ChessGame;
+import org.academiadecodigo.game.Game;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.Move;
 
@@ -9,11 +10,11 @@ import org.academiadecodigo.game.utils.Move;
  * Interface for the movement of the pieces in whichever board
  * Created by tekman on 24/12/2016.
  */
-public interface Mover {
+public interface Mover<E extends Player, T extends Game> {
 
     Position commitMove(Move move);
 
-    void recalculatePlayerMoves(Player player, Move move, Position previousPos);
+    void recalculatePlayerMoves(E player, Move move, Position previousPos);
 
-    void setChessGame(ChessGame chessGame);
+    void setChessGame(T chessGame);
 }

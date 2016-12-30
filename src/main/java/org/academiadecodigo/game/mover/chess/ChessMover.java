@@ -1,6 +1,7 @@
 package org.academiadecodigo.game.mover.chess;
 
 import org.academiadecodigo.client.Player;
+import org.academiadecodigo.client.chess.ChessPlayer;
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
@@ -13,7 +14,7 @@ import java.util.List;
  * Class responsible for moving pieces in the ChessBoard
  * Created by tekman on 24/12/2016.
  */
-public class ChessMover implements Mover {
+public class ChessMover implements Mover<ChessPlayer, ChessGame> {
 
     private ChessGame chessGame;
 
@@ -77,7 +78,7 @@ public class ChessMover implements Mover {
      * @param move the move made
      * @param previousPos the previous piece position
      */
-    public void recalculatePlayerMoves(Player player, Move move, Position previousPos) {
+    public void recalculatePlayerMoves(ChessPlayer player, Move move, Position previousPos) {
 
         List<Move> previousMoves = chessGame.getPlayerMoves(player);
     }

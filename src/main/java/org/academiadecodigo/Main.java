@@ -15,8 +15,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Player p1 = new ChessPlayer();
-        Player p2 = new ChessPlayer();
+        ChessPlayer p1 = new ChessPlayer();
+        ChessPlayer p2 = new ChessPlayer();
 
 
         ChessGame chessGame = new ChessGame.GameBuilderImpl()
