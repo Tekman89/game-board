@@ -1,6 +1,5 @@
 package org.academiadecodigo;
 
-import org.academiadecodigo.client.Player;
 import org.academiadecodigo.client.chess.ChessPlayer;
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;

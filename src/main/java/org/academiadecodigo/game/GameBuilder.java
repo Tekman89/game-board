@@ -1,7 +1,6 @@
-package org.academiadecodigo.game.utils;
+package org.academiadecodigo.game;
 
 import org.academiadecodigo.client.Player;
-import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.validator.MoveValidator;

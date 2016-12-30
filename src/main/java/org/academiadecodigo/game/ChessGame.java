@@ -1,14 +1,11 @@
 package org.academiadecodigo.game;
 
-import org.academiadecodigo.client.Player;
 import org.academiadecodigo.client.chess.ChessPlayer;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
 import org.academiadecodigo.game.position.Position;
-import org.academiadecodigo.game.utils.GameBuilder;
 import org.academiadecodigo.game.utils.Move;
-import org.academiadecodigo.game.utils.chess.ChessMove;
 import org.academiadecodigo.game.validator.MoveValidator;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.validator.chess.ChessValidator;

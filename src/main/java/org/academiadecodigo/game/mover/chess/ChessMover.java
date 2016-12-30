@@ -1,6 +1,5 @@
 package org.academiadecodigo.game.mover.chess;
 
-import org.academiadecodigo.client.Player;
 import org.academiadecodigo.client.chess.ChessPlayer;
 import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.piece.Piece;
@@ -69,18 +68,6 @@ public class ChessMover implements Mover<ChessPlayer, ChessGame> {
         pieceToGetEaten.setPos(null);
 
         moveNormal(move);
-    }
-
-
-    /**
-     * See @mover
-     * @param player player to add into
-     * @param move the move made
-     * @param previousPos the previous piece position
-     */
-    public void recalculatePlayerMoves(ChessPlayer player, Move move, Position previousPos) {
-
-        List<Move> previousMoves = chessGame.getPlayerMoves(player);
     }
 
     public void setChessGame(ChessGame chessGame) {
