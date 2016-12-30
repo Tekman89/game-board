@@ -1,12 +1,9 @@
 package org.academiadecodigo.game.mover;
 
 import org.academiadecodigo.client.Player;
-import org.academiadecodigo.game.Game;
+import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.Move;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Interface for the movement of the pieces in whichever board
@@ -18,5 +15,5 @@ public interface Mover {
 
     void recalculatePlayerMoves(Player player, Move move, Position previousPos);
 
-    void setGame(Game game);
+    void setChessGame(ChessGame chessGame);
 }

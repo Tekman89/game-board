@@ -4,9 +4,6 @@ import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.PieceColorType;
 import org.academiadecodigo.game.utils.PieceType;
-import org.academiadecodigo.game.utils.chess.ChessPieceType;
-
-import java.util.List;
 
 
 /**

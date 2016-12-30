@@ -1,7 +1,7 @@
 package org.academiadecodigo.game.mover.chess;
 
 import org.academiadecodigo.client.Player;
-import org.academiadecodigo.game.Game;
+import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.mover.Mover;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ChessMover implements Mover {
 
-    private Game game;
+    private ChessGame chessGame;
 
     /**
      * Method to commit Moves made by the player
@@ -79,10 +79,10 @@ public class ChessMover implements Mover {
      */
     public void recalculatePlayerMoves(Player player, Move move, Position previousPos) {
 
-        List<Move> previousMoves = game.getPlayerMoves(player);
+        List<Move> previousMoves = chessGame.getPlayerMoves(player);
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setChessGame(ChessGame chessGame) {
+        this.chessGame = chessGame;
     }
 }

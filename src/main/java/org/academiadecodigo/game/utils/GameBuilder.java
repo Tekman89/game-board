@@ -1,7 +1,7 @@
 package org.academiadecodigo.game.utils;
 
 import org.academiadecodigo.client.Player;
-import org.academiadecodigo.game.Game;
+import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.validator.MoveValidator;
@@ -9,15 +9,16 @@ import org.academiadecodigo.game.validator.MoveValidator;
 /**
  * Created by tekman on 24/12/2016.
  */
-public interface GameBuilder {
+public interface GameBuilder<E extends Player, T extends GameBoard, K extends MoveValidator, J extends Mover> {
 
-    GameBuilder addPlayer(Player player);
 
-    GameBuilder setGameBoard(GameBoard gameBoard);
+    GameBuilder addPlayer(E player);
 
-    Game build();
+    GameBuilder setGameBoard(T gameBoard);
 
-    GameBuilder setValidator(MoveValidator validator);
+    ChessGame build();
 
-    GameBuilder setMover(Mover mover);
+    GameBuilder setValidator(K validator);
+
+    GameBuilder setMover(J mover);
 }

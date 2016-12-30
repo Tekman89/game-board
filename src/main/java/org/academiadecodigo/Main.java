@@ -2,7 +2,7 @@ package org.academiadecodigo;
 
 import org.academiadecodigo.client.Player;
 import org.academiadecodigo.client.chess.ChessPlayer;
-import org.academiadecodigo.game.Game;
+import org.academiadecodigo.game.ChessGame;
 import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
 import org.academiadecodigo.game.validator.chess.ChessValidator;
@@ -19,7 +19,7 @@ public class Main {
         Player p2 = new ChessPlayer();
 
 
-        Game game = new Game.GameBuilderImpl()
+        ChessGame chessGame = new ChessGame.GameBuilderImpl()
                 .addPlayer(p1)
                 .addPlayer(p2)
                 .setGameBoard(new ChessGameBoard())
@@ -28,6 +28,6 @@ public class Main {
                 .build();
 
 
-        game.start();
+        chessGame.start();
     }
 }
