@@ -1,5 +1,6 @@
 package org.academiadecodigo.game.utils.chess;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,9 +26,25 @@ public enum Directions {
 
     public static List<Directions> getList() {
         List<Directions> directionsList = new LinkedList<Directions>();
-        for (int i = 0; i < Directions.values().length; i++) {
-            directionsList.add(Directions.values()[i]);
-        }
+        Collections.addAll(directionsList, Directions.values());
+
         return directionsList;
+    }
+
+    public static Directions getDirection(int x, int y) {
+        Directions direction = null;
+
+        for (Directions d : values()) {
+            if (d.moves[0] == x && d.moves[1] == y) {
+                direction = d;
+                break;
+            }
+        }
+
+        if (direction == null) {
+            System.out.println("Something went really wrong in here...");
+        }
+
+        return direction;
     }
 }
