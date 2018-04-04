@@ -1,13 +1,14 @@
 package org.academiadecodigo.game.utils.chess;
 
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Created by tekman on 24/12/2016.
  */
-public enum Directions {
+public enum Direction {
 
     UP(0, -1),
     DOWN(0, 1),
@@ -20,21 +21,21 @@ public enum Directions {
 
     public final int[] moves;
 
-    Directions(int x, int y) {
+    Direction(int x, int y) {
         moves = new int[]{x, y};
     }
 
-    public static List<Directions> getList() {
-        List<Directions> directionsList = new LinkedList<Directions>();
-        Collections.addAll(directionsList, Directions.values());
+    public static List<Direction> getList() {
+        List<Direction> directionList = new LinkedList<>();
+        Collections.addAll(directionList, Direction.values());
 
-        return directionsList;
+        return directionList;
     }
 
-    public static Directions getDirection(int x, int y) {
-        Directions direction = null;
+    public static Direction getDirection(int x, int y) {
+        Direction direction = null;
 
-        for (Directions d : values()) {
+        for (Direction d : values()) {
             if (d.moves[0] == x && d.moves[1] == y) {
                 direction = d;
                 break;

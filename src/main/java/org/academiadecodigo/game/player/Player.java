@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by tekman on 24/12/2016.
  */
-public abstract class Player<T extends Piece> {
+public abstract class Player<T extends Piece, K extends Move> {
 
     private ChessGame chessGame;
 
@@ -24,7 +24,7 @@ public abstract class Player<T extends Piece> {
         this.chessGame = chessGame;
     }
 
-    public Move playRound() {
+    public K playRound() {
 
         throw new NotImplementedException();
     }

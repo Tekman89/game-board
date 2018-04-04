@@ -18,33 +18,34 @@ public enum ChessPieceType implements PieceType {
     QUEEN(8);
 
     public final int range;
-    private List<Directions> directions;
+    private List<Direction> directions;
 
     ChessPieceType(int range) {
         this.range = range;
-        directions = new LinkedList<Directions>();
+        directions = new LinkedList<>();
         addDirections();
     }
 
     private void addDirections() {
+        System.out.println(this);
         switch (this) {
             case BISHOP:
-                directions.add(Directions.DOWNLEFT);
-                directions.add(Directions.DOWNRIGHT);
-                directions.add(Directions.UPLEFT);
-                directions.add(Directions.UPRIGHT);
+                directions.add(Direction.DOWNLEFT);
+                directions.add(Direction.DOWNRIGHT);
+                directions.add(Direction.UPLEFT);
+                directions.add(Direction.UPRIGHT);
                 break;
             case KING:
-                directions.addAll(Directions.getList());
+                directions.addAll(Direction.getList());
                 break;
             case ROOK:
-                directions.add(Directions.UP);
-                directions.add(Directions.DOWN);
-                directions.add(Directions.RIGHT);
-                directions.add(Directions.LEFT);
+                directions.add(Direction.UP);
+                directions.add(Direction.DOWN);
+                directions.add(Direction.RIGHT);
+                directions.add(Direction.LEFT);
                 break;
             case QUEEN:
-                directions.addAll(Directions.getList());
+                directions.addAll(Direction.getList());
                 break;
             default:
                 System.out.println("should never enter here");
@@ -53,7 +54,12 @@ public enum ChessPieceType implements PieceType {
     }
 
 
-    public List<Directions> getDirections() {
+    public List<Direction> getDirections() {
         return directions;
+    }
+
+
+    public int getRange() {
+        return range;
     }
 }

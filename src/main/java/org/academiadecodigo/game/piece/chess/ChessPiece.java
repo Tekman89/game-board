@@ -4,20 +4,22 @@ import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.PieceColorType;
 import org.academiadecodigo.game.utils.PieceType;
+import org.academiadecodigo.game.utils.chess.ChessPieceType;
 
 
 /**
  * Created by tekman on 24/12/2016.
  */
-public class ChessPiece extends Piece {
+public class ChessPiece extends Piece<ChessPiece> {
 
 
     private boolean danger;
     private PieceType type;
 
 
-    public ChessPiece(Position pos, PieceColorType color, int maxDistance, PieceType type) {
-        super(pos, maxDistance, color);
+    public ChessPiece(Position pos, PieceColorType color, ChessPieceType type) {
+        super(pos, type.getRange(), color);
+        this.type = type;
 
     }
 

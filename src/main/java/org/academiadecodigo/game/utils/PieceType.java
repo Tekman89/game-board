@@ -1,6 +1,6 @@
 package org.academiadecodigo.game.utils;
 
-import org.academiadecodigo.game.utils.chess.Directions;
+import org.academiadecodigo.game.utils.chess.Direction;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public interface PieceType {
 
 
-    List<Directions> getDirections();
+    List<Direction> getDirections();
 
 
 }

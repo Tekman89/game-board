@@ -6,6 +6,7 @@ import org.academiadecodigo.game.board.chess.ChessGameBoard;
 import org.academiadecodigo.game.mover.chess.ChessMover;
 import org.academiadecodigo.game.position.Position;
 import org.academiadecodigo.game.utils.Move;
+import org.academiadecodigo.game.utils.chess.ChessMove;
 import org.academiadecodigo.game.validator.MoveValidator;
 import org.academiadecodigo.game.mover.Mover;
 import org.academiadecodigo.game.validator.chess.ChessValidator;
@@ -37,12 +38,12 @@ public class ChessGame extends Game {
     /**
      * Object to validate every player move
      */
-    private MoveValidator validator;
+    private MoveValidator<ChessPlayer, ChessGame, ChessMove> validator;
 
     /**
      * Object to commit every player move
      */
-    private Mover mover;
+    private Mover<ChessPlayer, ChessGame> mover;
 
     /**
      * Map containing all moves the players can make
@@ -128,7 +129,7 @@ public class ChessGame extends Game {
 
     private void playRound(ChessPlayer player) {
 
-        Move move = null;
+        ChessMove move = null;
 
         do {
 
@@ -153,8 +154,8 @@ public class ChessGame extends Game {
 
         public GameBuilderImpl() {
             chessGame = new ChessGame();
-            chessGame.players = new LinkedList<ChessPlayer>();
-            chessGame.playerMoves = new LinkedHashMap<ChessPlayer, List<Move>>();
+            chessGame.players = new LinkedList<>();
+            chessGame.playerMoves = new LinkedHashMap<>();
         }
 
         public GameBuilder addPlayer(ChessPlayer player) {
@@ -215,7 +216,7 @@ public class ChessGame extends Game {
      *
      * @param validator interface representing the Validator we are going to use to validate our moves
      */
-    private void setValidator(MoveValidator validator) {
+    private void setValidator(MoveValidator<ChessPlayer, ChessGame, ChessMove> validator) {
         this.validator = validator;
     }
 
@@ -225,7 +226,7 @@ public class ChessGame extends Game {
      *
      * @param mover interface representing the Mover that we are going to use to move our pieces
      */
-    private void setMover(Mover mover) {
+    private void setMover(Mover<ChessPlayer, ChessGame> mover) {
         this.mover = mover;
     }
 

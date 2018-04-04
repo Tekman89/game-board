@@ -9,13 +9,13 @@ import org.academiadecodigo.game.utils.Move;
 /**
  * Created by tekman on 24/12/2016.
  */
-public interface MoveValidator<E extends Game, T extends Player> {
+public interface MoveValidator<T extends Player, E extends Game, K extends Move> {
 
-    boolean isMoveValid(Move move, T player);
+    boolean isMoveValid(K move, T player);
 
     void setChessGame(E chessGame);
 
     void beginGame(GameBoard board, T player);
 
-    void recalculatePlayerMoves(T player, Move move, Position previousPos);
+    void recalculatePlayerMoves(T player, K move, Position previousPos);
 }

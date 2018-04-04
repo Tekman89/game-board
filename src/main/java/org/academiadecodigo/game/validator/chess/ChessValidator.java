@@ -7,10 +7,9 @@ import org.academiadecodigo.game.board.GameBoard;
 import org.academiadecodigo.game.piece.Piece;
 import org.academiadecodigo.game.piece.chess.ChessPiece;
 import org.academiadecodigo.game.position.Position;
-import org.academiadecodigo.game.utils.Move;
 import org.academiadecodigo.game.utils.chess.ChessMove;
 import org.academiadecodigo.game.utils.chess.ChessPieceType;
-import org.academiadecodigo.game.utils.chess.Directions;
+import org.academiadecodigo.game.utils.chess.Direction;
 import org.academiadecodigo.game.validator.MoveValidator;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -20,15 +19,16 @@ import java.util.List;
 /**
  * Created by tekman on 24/12/2016.
  */
-public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
+public class ChessValidator implements MoveValidator<ChessPlayer, ChessGame, ChessMove> {
 
     private ChessGame chessGame;
 
-    public boolean isMoveValid(Move move, ChessPlayer player) {
+    @Override
+    public boolean isMoveValid(ChessMove move, ChessPlayer player) {
         return chessGame.getPlayerMoves(player).contains(move) && checkIfKingIsNotEndangered(move, player);
     }
 
-    private boolean checkIfKingIsNotEndangered(Move move, ChessPlayer player) {
+    private boolean checkIfKingIsNotEndangered(ChessMove move, ChessPlayer player) {
 
         ChessPiece playerKing = player.getKing();
         boolean toReturn = false;
@@ -44,17 +44,16 @@ public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
 
 
     // TODO: 30/12/2016
-    private boolean checkIfMoveCompromises(Move move, Player player) {
+    private boolean checkIfMoveCompromises(ChessMove move, Player player) {
         throw new NotImplementedException();
     }
 
     // TODO: 30/12/2016
-    private boolean checkIfMoveProtects(Move move, ChessPlayer player) {
-        List<Piece> pieceList = player.getKing().getThreats();
+    private boolean checkIfMoveProtects(ChessMove move, ChessPlayer player) {
+        List<ChessPiece> threats = player.getKing().getThreats();
         Position kingPos = player.getKing().getPos();
 
-
-        for (Piece p : pieceList) {
+        for (ChessPiece p : threats) {
 
         }
 
@@ -70,6 +69,7 @@ public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
     }
 
 
+    @Override
     public void beginGame(GameBoard board, ChessPlayer player) {
 
         for (ChessPiece p : player.getPieces()) {
@@ -137,38 +137,42 @@ public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
 
         for (int i = 1; i <= p.getMaxDistance(); i++) {
             Position pos = board.getPos(col, row + (p.getColor().getModifier() * i));
+            Direction direction = Direction.getDirection(col, p.getColor().getModifier());
 
             if (pos.getPiece() == null) {
-                chessGame.addPlayerMove(player, new ChessMove(p, pos));
+                chessGame.addPlayerMove(player, new ChessMove(p, pos, direction));
             }
 
             Position first = board.getPos(col + 1, row + p.getColor().getModifier());
             Position second = board.getPos(col - 1, row + p.getColor().getModifier());
 
+
+            //not sure if this works
             if (first != null && first.getPiece() != null && first.getPiece().getColor() != p.getColor()) {
-                chessGame.addPlayerMove(player, new ChessMove(p, first));
+                chessGame.addPlayerMove(player, new ChessMove(p, first, Direction.getDirection(1, p.getColor().getModifier())));
             }
 
+            //not sure if this works...
             if (second != null && second.getPiece() != null && second.getPiece().getColor() != p.getColor()) {
-                chessGame.addPlayerMove(player, new ChessMove(p, first));
+                chessGame.addPlayerMove(player, new ChessMove(p, first, Direction.getDirection(-1, p.getColor().getModifier())));
             }
 
 
         }
     }
 
-    private void evaluatePiece(Piece p, GameBoard board, ChessPlayer player) {
-        for (Directions d : p.getDirections()) {
+    private void evaluatePiece(ChessPiece p, GameBoard board, ChessPlayer player) {
+        for (Direction d : p.getDirections()) {
             evaluateDirection(p, board, d, player);
         }
     }
 
-    private void evaluateDirection(Piece p, GameBoard board, Directions d, ChessPlayer player) {
+    private void evaluateDirection(Piece p, GameBoard board, Direction d, ChessPlayer player) {
         int col = p.getCol();
         int row = p.getRow();
 
         for (int i = 1; i <= p.getMaxDistance(); i++) {
-            Position temp = board.getPos(col + d.moves[0] * i, row + d.moves[-1] * i);
+            Position temp = board.getPos(col + d.moves[0] * i, row + d.moves[1] * i);
 
             if (temp == null) {
                 break;
@@ -176,7 +180,7 @@ public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
 
 
             if (temp.getPiece() == null || (temp.getPiece().getColor() != p.getColor())) {
-                chessGame.addPlayerMove(player, new ChessMove(p, temp));
+                chessGame.addPlayerMove(player, new ChessMove(p, temp, d));
                 break;
             }
 
@@ -184,13 +188,15 @@ public class ChessValidator implements MoveValidator<ChessGame, ChessPlayer> {
     }
 
 
+    @Override
     public void setChessGame(ChessGame chessGame) {
         this.chessGame = chessGame;
     }
 
 
     // TODO: 30/12/2016 finish this method
-    public void recalculatePlayerMoves(ChessPlayer player, Move move, Position previousPos) {
+    @Override
+    public void recalculatePlayerMoves(ChessPlayer player, ChessMove move, Position previousPos) {
         throw new NotImplementedException();
     }
 }
